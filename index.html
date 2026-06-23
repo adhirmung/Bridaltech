@@ -1262,65 +1262,32 @@
 </footer>
 
 <!-- ═══════════════════════════════════════════════════════════════
-     DYNAMIC GALLERY
-     ─────────────────────────────────────────────────────────────
-     TO UPDATE IMAGES:
-     • Edit GALLERY_IMAGES below — just change the filenames
-     • Add or remove entries freely
-     • Images must be in the same folder as this HTML file
-     • Portrait vs landscape frames are detected automatically
+     DYNAMIC GALLERY — powered by Cloudinary
+     To add photos: upload to Cloudinary and tag them "portfolio"
+     They appear here automatically — no code changes needed.
      ═══════════════════════════════════════════════════════════ -->
 <script>
 (function () {
-  /* ── Edit this list to update the gallery.
-     Images sit in the same folder as this HTML file.
-     Add, remove or reorder freely — the columns layout
-     handles any mix of portrait and landscape automatically. ── */
-  var GALLERY_IMAGES = [
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczN7ADs3KKAkbi1gdnHrQVhu_Ffq748Sgu86B4RC71wC8VGYQTnuCKQGG1dHpHX9ZvFHiM9m0iu2QShHtXr28-6YBW50Cg9_uSF2czMC_fwdkBeNG_dH=w1600-no", alt: "Indian bridal portrait by Bridaltech Photography, Durban" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczPcYojIRq5IsXkRAz_ifaXxHKsK9iti-PDBcKsvHZ3_BjGgMs925gYUSUJbf4ln6KCFUQUzA8VXhes86fLqmKhGdfI8jFOvq-1KZMirG34Sl-3Al4CC=w1600-no", alt: "Indian bridal portrait by Bridaltech Photography, Durban" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczNxsaFnre3jmGKeDUqEjbGYNcpG7KrUn9cP9WsGH0l50udbbc-Z9kYZ8jhGJULVVjkD02spAwWXqhsrAQQ8URLR6hyGLOOucbMI35ia1jdQi9Z2oW6r=w1600-no", alt: "Hindu wedding ceremony candid moment, KZN Midlands" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczNRVr-fKgINXGZDWat1oF4KbSi3BePtBKShkaY3VfK3vQCGSZUzkTZbUD9xgqseMHD4eDWTDK1wCPMBVMlIkVux1qQq6M4yWCspCnPKuMBHw0bbhO4A=w1600-no", alt: "Indian wedding first look, Brahman Hills KZN Midlands" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczPpePfJsV2LHF_Z4fO387PBVz3KTDY6esm2CyJR_MikwKQu5R0ezFIocGqpDTGdMP6xBMIR7p6_2UJKwzqdkEA0otD8MJs9FndI4-tZTX3BnUumB3Fx=w1600-no", alt: "Indian wedding couple portrait, KZN wedding photography Bridaltech" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczNtdWTTZper9zfwg7vkc2IK81vKiLJG83QhKTdMO8xW_JPZBr-G_v85zYzIpiJCXJPxZAwnGmRVV_49Tgwe4YLAOLmePjXerkKGiHhShdNqQOsYrNCB=w1600-no", alt: "Tamil wedding couple portrait, Colisheen Estate Durban" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczNInhZvRaH0kHs4kYUqXJc7CmlILW5CVE3HsbcAxuZA92aAdWzxPV6d4tQpcwydEISEOiQ7bXtxpUdw9JhxDoXLIazP1f8v1wchKM33bYqPINm3cXvG=w1600-no", alt: "Indian bride mehndi detail, wedding photography South Africa" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczPVKq7QNJY7GG8FAsGlMb2J16H6baTCoL77N4uwp5KxZDGmATHae9kP3_PmchSu7fjkbqw_viQW2Fnl35ghP_-BnfbnDz6oD4CxBDhSKx3-n2npJeB8=w1600-no", alt: "Indian wedding candid moment, KwaZulu-Natal wedding photographer" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczMdmbflKYuvzp4y4u6PneNjdsfozn5ptZJvEEAX8TzD76aGrWIN3V2E6vxGVolsD4-B8rIqGuIcUu6SU-3AvCOMa_6s6axd-OsyiL3b_KQEDwa6Ms_d=w1600-no", alt: "Wedding reception candid, The Gallery Durban" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczO3pog_np66kzOgZ1uxuxE1epmwOsFzJFe_J7sGIJ3q_NFHYL6s9PvUoC-ilWT-NAkqiotrKy6BGMWl7s6ELLWvZeKc9FHqGV6Er14oTwxUh-DveVDe=w1600-no", alt: "Gujarati wedding pheras ceremony, Durban KwaZulu-Natal" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczNv5mC2QOiGpjZJUk8M890cvtyX1XQdPR-LF0kV9zNLInm0g5PRfQqbFDXoyulpJ7KaQXr1OBThIPd9yaVsJPQ3ybDKNG2JfQQAMm6ECTreLaOJ5_dE=w1600-no", alt: "Indian bridal lehenga portrait, Brahman Hills wedding photographer" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczNFsJ8zT6KrQQ_KElw6qzRqkqYJXNXsZgdNCLJmZZibmM1_wECyycy_D71ZiaJIy2OhELF1FTiYLhEOLxqAjSrRbXuzCh_ABpEZuEDQopGDCu4mTLfZ=w1600-no", alt: "Wedding couple at sunset, Granny Mouse KZN Midlands" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczP841zYICo4VZSepz1nCssXZsCNAUuhMl-XfS1ngM2JabXAYf644e8OQc28q-UhNajiDcSKYzbmysLkCKO72lqR5oCvAZ5AECbeI6oz8WdmFLxhrgOc=w1600-no", alt: "Muslim wedding nikah ceremony, Durban Indian wedding photographer" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczMEcyfqAEajC2ih_FEP9vrxm4jMJaI0imrgIyfkFcazgKV_j8Rlh_y0x1Tt6P_2H8elu0x1UK_VHkJmhsKdIuePWJIztPvkWsnkW87zpcbTYvY09HVu=w1600-no", alt: "Indian wedding baraat procession, KZN South Africa" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczMQiecoPm_AJb48HpqgXHcb2eL6c6WdlUe0swGpN0NcKPx48kydWmymUdGZPRE5cJ9pf3guAdfXM_Yb9u6a4492gMeEUV7q54VftzF0Upde8-VaYs8D=w1600-no", alt: "Bridal portrait at Colisheen Estate, Indian wedding photography Durban" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczPcd0tlQ-y3aFwlU-6LP4zknBJLUL0KAWIitukJB6Ajk35VSe4SjGo6nhc9IglkApzZ4G9PgOj5k_Z94Frc6GeTX1XtjuahBK3xhcp9_grGarPXQWoj=w1600-no", alt: "Candid wedding moment, emotional Indian wedding photography South Africa" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczNDntLKdBAxJGVXDenwclVUfOAhAqF5rWmAB79faUzJ-c0Fo0U5X3Zk2DjDAi_9LmkVx4H2tA9ZnBcCHIBuYvyYzRSQHWPbnwIPpua6mnI8u9ZCnJmK=w1600-no", alt: "Indian wedding family portrait, Shepstone Gardens KZN" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczNF-78M4uWdDQQGZY44HB8urxg9luSbhnYXbQqRBW7bYvc7HCM3EpSN6nxuWQqsxYvzWJg5vsX8ckwVkoOsn5QhOs54RQqVSvSiMFHc-PQGwyNoLgXa=w1600-no", alt: "Bride getting ready, KZN Indian wedding candid photography" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczNA280jwmwnx0eGbcWpKjo8xKd-kRqXBxNnjbNi6iJe0siheHwTOgYLtGW6JclEeNWAhAMHQHkZjJOOR1upoFpUDKEJfAU0s-K-6pVaNc5geJ2UViY0=w1600-no", alt: "Indian wedding venue detail, Unalome Durban wedding photography" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczMFDtiiBJdDopwxUcygLMLcIUeHoXwprKnwmmrRwVNE3GFuNfEcYSHWk8Ha87bgxWVwavQQ_LaXphL3FpKN-LFw_9Ns4dd-gjNgEzJEqQb1_RP4bV6i=w1600-no", alt: "Couple portrait at Four Seasons Hotel, Indian wedding photographer" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczOI8QAxKJ5fJgmO4rSu_3LElkPvsjTyvkIZYmbur76Q98fiv3WGjmHR3CdKkZcHWqDtw9ck8m6o6YIvjcvorGq0qBLkjWPWP1aCn775PUyZLoHJY1FQ=w1600-no", alt: "Mehndi night photography, Indian wedding Durban KwaZulu-Natal" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczPamkr8eQ8omJCmLE4nkUuZiCGmLmwRa_8dnVnIPt30MYzXWAblC4-7KUzaoXm-ar8v_W0PEut2U-I5cSytG2tPnxVTo0lKtqgHD4Vq1XM7kcSJzT8T=w1600-no", alt: "Westcliff wedding couple, Indian wedding photography Johannesburg" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczMy7LsI7iBoer9iP3iqXfBQfj2s9CTJSQHXzKFRaahEoDI93hVR8aOpzIVZc2GXlz4ETfLoNrQqcBNTZc8siRairKT3AL827hlnGGDlqZjUYkQlNV41=w1600-no", alt: "Hindu wedding rituals captured candidly, Bridaltech Photography" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczPoYwtRwjdb4JoP3kywOMnEz1dHNlEJh4jPKQ8JgK3rMUFoRCqANK4Y7fJgb71Dn-iXIjVCJ7AB3dvocQuD27P3ymbdHQXQHbLbCrfudSMv6gKi8FkD=w1600-no", alt: "Indian bride portrait golden hour, KZN wedding photographer" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczOueS6bah7CLD2RCGZPpdxdvIX_jLB8LVEDu_3VqnnJDXTFxbQDuD0IFaPV7vPgv3XA5eW3AB6PI73tMwbcmCpr2n6fb9VHdj8fDYgkHj4go25ieRg-=w1600-no", alt: "Wedding first dance candid, Indian wedding photographer South Africa" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczN01f8lUgJQgPW7AfnlxDuM2GsfG9mW497dZ00Y5ohcOH92FCwtveS6Ns9z2pBG0bMCjHEgfXjWZYtCEXZf9AAq3cboUBUSyYDHfb1Z-v2hj1QifFMf=w1600-no", alt: "Brahman Hills wedding photography, KZN Midlands Indian wedding" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczP0RK8qeFUdCuxW4E-ycad8C984Hnv7mVwh_rwC2dTEFNU0Q9IQmLkm5Si_5teJvobH81lliSeOyi_9e73E1e4dipjKBo6kCofBPWj9hr4mrTjwa1z4=w1600-no", alt: "Emotional ceremony moment, Indian wedding photographer KwaZulu-Natal" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczM43_PxsZcitBLe4cydWM4hN8oU0NYW9d-0CS9cA6Favs3WXTRqh5kg-NdkW6kSZLLta9XGWKPJ7yi7Qc-fYPJuUwQOKuPuqsU1H6sDna4SN0M9KUq_=w1600-no", alt: "Diaspora couple Indian wedding Durban, returning home to marry" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczMELrFbOezuT6CxyK2qHeRv2jgtK01x3YVszKY6Z2d37rgbDi4FCNsu5BjmX6ZI3xtGZ-e-GISytzC0zTFPL5Y8VgaykUE_cFzYW1G2CAbCeF21fKz2=w1600-no", alt: "Indian wedding couple, Bridaltech Photography Adhir Mungroo Durban" },
-  { src: "https://lh3.googleusercontent.com/pw/AP1GczMee99rBARMiSw47VsjmsuIasNqw2SVDFSSWexeVqLJlz-eGNOzNOkhpLBAN8MDKNJljKx94gUNICfIYuJ0Ca5fXoZq0YODLqnJZ1JuzXS9VzzC9_98=w1600-no", alt: "Grand Indian wedding celebration, KZN wedding photographer South Africa" }
-];
+  var CLOUD = 'dsdysjman';
+  var TAG   = 'portfolio';
+  var grid  = document.getElementById('dyn-gallery');
 
-  var grid = document.getElementById('dyn-gallery');
-
-  GALLERY_IMAGES.forEach(function(item) {
-    var cell = document.createElement('div');
-    cell.className = 'g-cell';
-    var img = document.createElement('img');
-    img.src     = item.src;
-    img.alt     = item.alt;
-    img.loading = 'lazy';
-    cell.appendChild(img);
-    grid.appendChild(cell);
-  });
+  fetch('https://res.cloudinary.com/' + CLOUD + '/image/list/' + TAG + '.json')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      data.resources.forEach(function(item) {
+        var src  = 'https://res.cloudinary.com/' + CLOUD + '/image/upload/q_auto,f_auto,w_1600/' + item.public_id + '.' + item.format;
+        var cell = document.createElement('div');
+        cell.className = 'g-cell';
+        var img  = document.createElement('img');
+        img.src     = src;
+        img.alt     = 'Indian wedding photography by Bridaltech Photography, Durban KZN South Africa';
+        img.loading = 'lazy';
+        cell.appendChild(img);
+        grid.appendChild(cell);
+      });
+    })
+    .catch(function() {});
 })();
 </script>
 
